@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Math War</string>
+    <string name="Start">Start Game</string>
+    <string name="Help">Help</string>
+    <string name="About">About</string>
+    <string name="Addition">Addition +</string>
+    <string name="Subtraction">Subtraction -</string>
+    <string name="Multiplication">Multiplication x</string>
+    <string name="Division">Division /</string>
+    <string name="ChoiceText">Choose The Game Mode</string>
+</resources>
