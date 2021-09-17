@@ -8,4 +8,6 @@
     <string name="Multiplication">Multiplication x</string>
     <string name="Division">Division /</string>
     <string name="ChoiceText">Choose The Game Mode</string>
+    <string name="Congratulations">Congratulations!</string>
+    <string name="Score">Score</string>
 </resources>

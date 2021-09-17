@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/end"
+    tools:context=".EndScreen">
+
+    <TextView
+        android:id="@+id/txtScore"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:background="@drawable/circle"
+        android:fontFamily="@font/baloo_thambi"
+        android:gravity="center"
+        android:text="@string/Score"
+        android:textColor="@color/white"
+        android:layout_marginTop="25dp"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="@+id/txtCong"
+        app:layout_constraintStart_toStartOf="@+id/txtCong"
+        app:layout_constraintTop_toBottomOf="@+id/txtCong" />
+
+    <TextView
+        android:id="@+id/txtCong"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:background="@drawable/circle"
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/baloo_thambi"
+        android:gravity="center"
+
+        android:layout_marginTop="56dp"
+        android:text="@string/Congratulations"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnMenu"
+        android:layout_width="175dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/circle"
+        android:fontFamily="@font/baloo_thambi"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textAllCaps="false"
+        android:text="Menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPoint" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnPlayAgain"
+        android:layout_width="175dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/circle"
+        android:fontFamily="@font/baloo_thambi"
+        android:text="Play Again"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPoint" />
+
+    <TextView
+        android:id="@+id/txtPoint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/baloo_thambi"
+        android:text="0"
+        android:textColor="@color/white"
+        android:textSize="45sp"
+        app:layout_constraintEnd_toEndOf="@+id/txtScore"
+        app:layout_constraintStart_toStartOf="@+id/txtScore"
+        app:layout_constraintTop_toBottomOf="@+id/txtScore" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.alpsu.mathematix" >
+    package="com.alpsu.mathematix">
 
     <application
         android:allowBackup="true"
@@ -8,13 +8,19 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MathWar" >
+        android:theme="@style/Theme.MathWar">
+        <activity
+            android:name=".EndScreen"
+            android:exported="true" />
+        <activity
+            android:name=".GameActivity"
+            android:exported="true" />
         <activity
             android:name=".GameMode"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
