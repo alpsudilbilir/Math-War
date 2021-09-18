@@ -29,6 +29,7 @@ public class GameMode extends AppCompatActivity {
                 isAddition = true;
                 Intent intent = new Intent(GameMode.this,GameActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         btnSub.setOnClickListener(new View.OnClickListener() {
@@ -37,6 +38,7 @@ public class GameMode extends AppCompatActivity {
                 isSubtraction = true;
                 Intent intent = new Intent(GameMode.this,GameActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         btnMult.setOnClickListener(new View.OnClickListener() {
@@ -45,6 +47,7 @@ public class GameMode extends AppCompatActivity {
                 isMultiplication = true;
                 Intent intent = new Intent(GameMode.this,GameActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         btnDiv.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +56,15 @@ public class GameMode extends AppCompatActivity {
                 isDivision = true;
                 Intent intent = new Intent(GameMode.this,GameActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(GameMode.this,MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

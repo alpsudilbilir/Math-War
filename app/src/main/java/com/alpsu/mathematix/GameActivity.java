@@ -13,6 +13,9 @@ import android.widget.Toast;
 
 import java.util.Locale;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
+
+import android.graphics.Color;
 
 public class GameActivity extends AppCompatActivity {
     static TextView txtScoreCount;
@@ -22,16 +25,17 @@ public class GameActivity extends AppCompatActivity {
     EditText editTxtAnswer;
     Button btnOK;
     Button btnNext;
+
     Random rand = new Random();
+
     int num1, num2;
     int result;
     int score = 0;
     int life = 3;
     CountDownTimer timer;
-    private static final long START_TIMER_IN_MILLIS = 10000;
+    private static final long START_TIMER_IN_MILLIS = 30000;
     Boolean timerStopped = false;
     long time_left_in_millis = START_TIMER_IN_MILLIS;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,23 +44,29 @@ public class GameActivity extends AppCompatActivity {
 
         initView();
         gameContinue();
+        startTimer();
 
 
         btnOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String text = editTxtAnswer.getText().toString();
-                int answer = Integer.parseInt(text);
+                int answer = 0;
+                try{
+                    answer = Integer.parseInt(editTxtAnswer.getText().toString());
+                }catch (NumberFormatException n){
+                    Toast.makeText(GameActivity.this, "Enter a number!", Toast.LENGTH_SHORT).show();
+                }
                 if(answer == result){
-                    pauseTimer();
                     score += 10;
                     txtScoreCount.setText(String.valueOf(score));
-                    btnOK.setClickable(false);
                     Toast.makeText(GameActivity.this, "Correct Answer!", Toast.LENGTH_SHORT).show();
+                    gameContinue();
+                    editTxtAnswer.setText("");
                 }else{
                     life -= 1;
                     txtLifeCount.setText(String.valueOf(life));
                     Toast.makeText(GameActivity.this, "Wrong Answer!", Toast.LENGTH_SHORT).show();
+                    gameOver();
                 }
             }
         });
@@ -64,60 +74,46 @@ public class GameActivity extends AppCompatActivity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                btnOK.setClickable(true);
-                if(life <= 0){
-                    makeFalseAll();
-                    Intent intent = new Intent(GameActivity.this,EndScreen.class);
-                    startActivity(intent);
-                    finish();
-                }
                 editTxtAnswer.setText("");
                 gameContinue();
             }
         });
     }
-    public void initView(){
-        txtScoreCount = findViewById(R.id.txtScoreCount);
-        txtTimeCount = findViewById(R.id.txtTimeCount);
-        txtLifeCount = findViewById(R.id.txtLifeCount);
-        questionTxt = findViewById(R.id.questionTxt);
-        editTxtAnswer = findViewById(R.id.editTxtAnswer);
-        btnOK = findViewById(R.id.btnOK);
-        btnNext = findViewById(R.id.btnNext);
 
-    }
     public void gameContinue(){
         if(GameMode.isAddition){
             num1 = rand.nextInt(100);
             num2 = rand.nextInt(100);
             result = num1 + num2;
             questionTxt.setText((num1 + " + " + num2 + " = ?"));
-            resetTimer();
-            startTimer();
         }
         if (GameMode.isSubtraction){
             num1 = rand.nextInt(100);
             num2 = rand.nextInt(num1);
             result = num1 - num2;
             questionTxt.setText((num1 + " - " + num2 + " = ?"));
-            resetTimer();
-            startTimer();
         }
         if(GameMode.isMultiplication){
             num1 = rand.nextInt(10);
             num2 = rand.nextInt(10);
             result = num1 * num2;
             questionTxt.setText((num1 + " x " + num2 + " = ?"));
-            resetTimer();
-            startTimer();
         }
         if(GameMode.isDivision){
             num1 = rand.nextInt(100);
-            num2 = rand.nextInt(100);
+            num2 = rand.nextInt(num1);
             result = num1 / num2;
             questionTxt.setText((num1 + " / " + num2 + " = ?"));
+        }
+    }
+    public void gameOver(){
+        if(life == 0){
+            pauseTimer();
             resetTimer();
-            startTimer();
+            makeFalseAll();
+            Intent intent = new Intent(GameActivity.this,EndScreen.class);
+            startActivity(intent);
+            finish();
         }
     }
     public void startTimer(){
@@ -132,14 +128,10 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 timerStopped = true;
-                pauseTimer();
-                resetTimer();
-                updateText();
-                life -= 1;
-                txtLifeCount.setText(""+life);
-                questionTxt.setText("Sorry! Time is up.");
-                result = 1997;
-
+                makeFalseAll();
+                Intent intent = new Intent(GameActivity.this,EndScreen.class);
+                startActivity(intent);
+                finish();
             }
         }.start();
     }
@@ -158,12 +150,26 @@ public class GameActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         makeFalseAll();
-        super.onBackPressed();
+        pauseTimer();
+        resetTimer();
+        Intent intent = new Intent(GameActivity.this,GameMode.class);
+        startActivity(intent);
+        finish();
     }
     public void makeFalseAll(){
         GameMode.isAddition = false;
         GameMode.isSubtraction = false;
         GameMode.isMultiplication = false;
         GameMode.isDivision = false;
+    }
+    public void initView(){
+        txtScoreCount = findViewById(R.id.txtScoreCount);
+        txtTimeCount = findViewById(R.id.txtTimeCount);
+        txtLifeCount = findViewById(R.id.txtLifeCount);
+        questionTxt = findViewById(R.id.questionTxt);
+        editTxtAnswer = findViewById(R.id.editTxtAnswer);
+        btnOK = findViewById(R.id.btnOK);
+        btnNext = findViewById(R.id.btnNext);
+
     }
 }

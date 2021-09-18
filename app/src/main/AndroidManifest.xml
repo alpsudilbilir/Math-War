@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MathWar">
         <activity
+            android:name=".HelpActivity"
+            android:exported="true" />
+        <activity
             android:name=".EndScreen"
             android:exported="true" />
         <activity

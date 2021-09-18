@@ -1,7 +1,9 @@
 package com.alpsu.mathematix;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -29,22 +31,33 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,GameMode.class);
                 startActivity(intent);
+                finish();
             }
         });
         btnHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: Start activity for how to play.
+                Intent intent = new Intent(MainActivity.this,HelpActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
         btnAbout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: Start activity for about page.
+                AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                alert.setTitle("About");
+                alert.setMessage("Developed with love by Alpsu Dilbilir.");
+                alert.setCancelable(true);
+                alert.setPositiveButton("Menu", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //Nothing happens here.
+                    }
+                });
+                alert.show();
             }
         });
-
-
-
     }
+
 }

@@ -41,7 +41,12 @@ public class EndScreen extends AppCompatActivity {
                 finish();
             }
         });
+    }
 
-
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(EndScreen.this,MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

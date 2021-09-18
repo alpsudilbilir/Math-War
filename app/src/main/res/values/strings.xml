@@ -10,4 +10,6 @@
     <string name="ChoiceText">Choose The Game Mode</string>
     <string name="Congratulations">Congratulations!</string>
     <string name="Score">Score</string>
+    <string name="howtoplay">To play game you have to solve questions as much as you can until time is over.</string>
+    <string name="help">How To Play</string>
 </resources>
