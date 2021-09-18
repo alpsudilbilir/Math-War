@@ -1,6 +1,6 @@
 # Math Game Application for Kids
 
-Game for basic math training about addition, subtraction, division and multiplication. Game has life bar and timer. User have to solve questions as much as he can before the time is out.
+Game for basic math training about addition, subtraction, division and multiplication. Game has life bar and timer. User have to solve questions as much as he can before the time is out. It's a fun project to improve my skills as a beginner android developer.
 
 Activities:
 
